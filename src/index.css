@@ -1,0 +1,73 @@
+/* Reset & Design System Tokens */
+:root {
+  --primary-color: rgb(58, 176, 155);
+  --primary-dark: #2c8c7b;
+  --primary-light: #52c2ad;
+  --primary-rgb: 58, 176, 155;
+  
+  --accent-yellow: #eaec6f;
+  --highlight-cyan: #b2eeec;
+  
+  --btn-primary-bg: #eff3f6;
+  --btn-secondary-bg: #75eaaa;
+  --btn-secondary-text: #164667;
+  
+  --navy-dark: #2c3e50;
+  --navy-text: #1a252f;
+  --text-main: #333333;
+  --text-muted: #5d6d7e;
+  --text-light: #7f8c8d;
+  
+  --navbar-bg: #c0dfe3;
+  --navbar-scrolled: rgba(167, 217, 212, 0.95);
+  
+  --bg-home: rgb(58, 176, 155);
+  --bg-white: #ffffff;
+  --bg-alt: #f8f9fa;
+  
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
+  
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-main);
+  background: var(--bg-home);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
