@@ -1,5 +1,12 @@
 import profilePic from '../assets/profile-picture.jpg';
 import cakeOfParadiseImg from '../assets/Cake-of-paradise.png';
+import secureIdentityImg from '../assets/Secure-identity.png';
+import firstProjectImg from '../assets/firstProject.png';
+import portfolioImg from '../assets/portfolio.png';
+import sabraSportImg from '../assets/sabraSport.png';
+import uiCakeOfparadise from '../assets/cake-of-paradise-UI.png';
+import TaskPhereUI from '../assets/taskPhere.png';
+import powerBi from '../assets/powerBI.png';
 
 export interface SocialLink {
   name: string;
@@ -35,6 +42,12 @@ export interface ProjectItem {
   image?: string;
   liveUrl?: string;
   githubUrl?: string;
+  figmaUrl?: string;
+  FigmaUrl?: string;
+  fileUrl?: string;
+  projectFileUrl?: string;
+  Url?: string;
+  url?: string;
   featured?: boolean;
 }
 
@@ -230,9 +243,9 @@ export const portfolioData = {
       tags: ['React.js', 'Python', 'Flask', 'Node.js', 'Firebase', 'Polygon Blockchain'],
       category: 'Web Development',
       icon: 'fas fa-shield-alt',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: 'https://github.com/janidu',
+      image: secureIdentityImg,
+      liveUrl: 'https://github.com/JaniduViduranga/capstone-project',
+      githubUrl: 'https://github.com/JaniduViduranga/capstone-project',
       featured: true,
     },
     {
@@ -243,9 +256,9 @@ export const portfolioData = {
       tags: ['React.js', 'TypeScript', 'Tailwind CSS', 'Firebase'],
       category: 'Web Development',
       icon: 'fas fa-trophy',
-      image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: 'https://github.com/janidu',
+      image: sabraSportImg,
+      liveUrl: 'https://github.com/gavirubihan/susl-sport',
+      githubUrl: 'https://github.com/gavirubihan/susl-sport',
       featured: true,
     },
     {
@@ -256,9 +269,9 @@ export const portfolioData = {
       tags: ['React.js', 'JavaScript', 'CSS3', 'Vercel'],
       category: 'Web Development',
       icon: 'fas fa-graduation-cap',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: 'https://github.com/janidu',
+      image: firstProjectImg,
+      liveUrl: 'https://github.com/JaniduViduranga/react-first-project',
+      githubUrl: 'https://github.com/JaniduViduranga/react-first-project',
       featured: false,
     },
     {
@@ -269,9 +282,9 @@ export const portfolioData = {
       tags: ['React.js', 'TypeScript', 'Tailwind CSS', 'Vite'],
       category: 'Web Development',
       icon: 'fas fa-laptop-code',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: 'https://github.com/janidu',
+      image: portfolioImg,
+      liveUrl: 'https://github.com/JaniduViduranga/portfolio',
+      githubUrl: 'https://github.com/JaniduViduranga/portfolio',
       featured: false,
     },
     {
@@ -282,9 +295,9 @@ export const portfolioData = {
       tags: ['Power BI', 'Data Modeling', 'DAX', 'Data Visualization'],
       category: 'Data Analysis',
       icon: 'fas fa-chart-line',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: 'https://github.com/janidu',
+      image: powerBi,
+      fileUrl: 'https://1drv.ms/f/c/e4ad27158cc0cd43/IgDvrI17MjHjR4xablVODrLjAffXWGKAHSxRG3jU0vJRUCw?e=urKUIX',
+      Url: 'https://1drv.ms/f/c/e4ad27158cc0cd43/IgDvrI17MjHjR4xablVODrLjAffXWGKAHSxRG3jU0vJRUCw?e=urKUIX',
       featured: false,
     },
     {
@@ -295,10 +308,21 @@ export const portfolioData = {
       tags: ['Figma', 'UI/UX Design', 'Wireframing', 'Prototyping'],
       category: 'UI/UX Design',
       icon: 'fas fa-layer-group',
-      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-      liveUrl: '',
-      githubUrl: '',
+      image: TaskPhereUI,
+      FigmaUrl: 'https://www.figma.com/design/ZCpV7GT6YmXn6DBARcNN01/TaskSphere?node-id=0-1&p=f&t=440807xTLJUkOPEa-0',
       featured: false,
-    }
+    },
+    {
+      id: 'cake-of-paradise-uiux',
+      title: 'Cake of Paradise — E-Commerce UI/UX Design',
+      description:
+        'Complete end-to-end UI/UX case study designed in Figma, progressing from low-fidelity wireframes to high-fidelity interactive prototypes with reusable NavBar and Footer components. Covers 14+ user flows including Home, Inspiration Gallery, Custom Cake Ordering, Slide-out Cart, Checkout, Order Confirmation, User Profile, and Authentication.',
+      tags: ['Figma', 'Low-Fidelity Wireframes', 'High-Fidelity Prototype', 'Design System', 'UI/UX Design'],
+      category: 'UI/UX Design',
+      icon: 'fas fa-pen-nib',
+      image: uiCakeOfparadise,
+      FigmaUrl: 'https://www.figma.com/design/ruInkfJKSGBIBd6mKivPFa/Cake-of-Paradise-Low-Fiedality-Wire-Frame-?node-id=44-30142&p=f&t=3cjtzk7kzjBjZPSL-0',
+      featured: true,
+    },
   ] as ProjectItem[]
 };

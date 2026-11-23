@@ -977,13 +977,13 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
 }
 
 .project-card {
   background-color: var(--color-bg-secondary);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--color-accent-secondary);
   box-shadow: var(--shadow-card);
@@ -998,8 +998,9 @@
   box-shadow: var(--shadow-card-hover);
 }
 
+/* Half of the Box shows the Image of the Project */
 .project-image {
-  height: 145px;
+  height: 220px;
   background: linear-gradient(135deg, #0b1324 0%, #1E3A8A 55%, #2563EB 100%);
   display: flex;
   align-items: center;
@@ -1007,6 +1008,7 @@
   color: var(--color-text-primary);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .project-cover-image {
@@ -1018,7 +1020,7 @@
   display: block;
 }
 
-.project-card:hover .project-cover-image {
+.project-image:hover .project-cover-image {
   transform: scale(1.06);
 }
 
@@ -1027,18 +1029,46 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(5, 8, 17, 0.15) 0%,
-    rgba(17, 26, 46, 0.35) 55%,
-    rgba(17, 26, 46, 0.85) 100%
+    rgba(5, 8, 17, 0.1) 0%,
+    rgba(17, 26, 46, 0.25) 50%,
+    rgba(17, 26, 46, 0.75) 100%
   );
   pointer-events: none;
+}
+
+/* Hover Hint to Click Image for Popup */
+.project-image-expand-hint {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(5, 8, 17, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.project-image:hover .project-image-expand-hint {
+  opacity: 1;
+}
+
+.project-image-expand-hint i {
+  color: var(--color-accent-ice);
+  font-size: 1.1rem;
 }
 
 .project-icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.6rem;
+  font-size: 3.5rem;
   color: var(--color-text-primary);
   position: relative;
   z-index: 1;
@@ -1053,72 +1083,71 @@
 
 .project-category-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   background-color: rgba(5, 8, 17, 0.85);
   border: 1px solid var(--color-accent-primary);
   color: var(--color-accent-ice);
-  padding: 0.22rem 0.65rem;
-  border-radius: 12px;
-  font-size: 0.72rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 14px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.4px;
   z-index: 3;
   backdrop-filter: blur(8px);
 }
 
+/* Lower Half: Project Details without Tech Stack */
 .project-content {
-  padding: 1.3rem 1.4rem;
+  padding: 1.4rem 1.6rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: space-between;
 }
 
-.project-content h3 {
+.project-title-link {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.65rem;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
   color: var(--color-text-primary);
   line-height: 1.2;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.project-content p {
+.project-title-link:hover {
+  color: var(--color-accent-ice);
+}
+
+.project-description-text {
   color: var(--color-text-secondary);
-  margin-bottom: 1rem;
-  line-height: 1.55;
-  font-size: 0.88rem;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1.1rem;
-  margin-top: auto;
-}
-
-.project-tech .tech-tag {
-  padding: 0.22rem 0.6rem;
-  font-size: 0.76rem;
-  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  font-size: 0.94rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-links {
   display: flex;
-  gap: 1.1rem;
+  gap: 1.3rem;
   align-items: center;
-  padding-top: 0.85rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(30, 58, 138, 0.35);
+  margin-top: auto;
 }
 
 .project-link {
   color: var(--color-accent-ice);
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   transition: var(--transition);
 }
 
@@ -1133,6 +1162,229 @@
 
 .project-link-github:hover {
   color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Projects Pagination (2 Projects Per Page)
+   ========================================================================== */
+.projects-pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 3.2rem;
+}
+
+.pagination-info {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-accent-secondary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: rgba(30, 58, 138, 0.4);
+  border-color: var(--color-accent-primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pagination-number-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-accent-secondary);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination-number-btn:hover {
+  background-color: rgba(30, 58, 138, 0.35);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent-primary);
+}
+
+.pagination-number-btn.active {
+  background-color: var(--color-accent-primary);
+  color: #ffffff;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.5);
+}
+
+/* ==========================================================================
+   Project Image Lightbox Popup (Pure Image Only)
+   ========================================================================== */
+.project-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 8, 17, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: lightboxFadeIn 0.2s ease-out;
+  cursor: zoom-out;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.project-lightbox-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  animation: lightboxScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxScaleIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightbox-pure-image {
+  max-width: 88vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-accent-primary);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(37, 99, 235, 0.35);
+  display: block;
+  background-color: #050811;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(17, 26, 46, 0.9);
+  border: 1px solid var(--color-accent-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.lightbox-close-btn:hover {
+  background-color: var(--color-accent-primary);
+  transform: rotate(90deg) scale(1.08);
+}
+
+.lightbox-caption {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  letter-spacing: 1.2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-category-tag {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--color-accent-ice);
+  background-color: rgba(37, 99, 235, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.45);
+  padding: 0.2rem 0.65rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.lightbox-fallback-box {
+  width: 480px;
+  max-width: 85vw;
+  height: 300px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0b1324 0%, #1E3A8A 55%, #2563EB 100%);
+  border: 1.5px solid var(--color-accent-primary);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  color: #ffffff;
+}
+
+.lightbox-fallback-box i {
+  font-size: 4.5rem;
+}
+
+.lightbox-fallback-box p {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
 }
 
 .empty-state {
@@ -1621,5 +1873,14 @@
 
   .contact-form-panel {
     padding: 1.8rem 1.2rem;
+  }
+
+  .lightbox-pure-image {
+    max-width: 95vw;
+    max-height: 70vh;
+  }
+
+  .project-image {
+    height: 180px;
   }
 }
