@@ -101,21 +101,27 @@ export const Navbar: React.FC = () => {
           className="nav-logo"
           onClick={(e) => handleNavClick(e, 'home')}
         >
-          <h3>{portfolioData.personalInfo.name}</h3>
+          <span className="nav-logo-text">
+            {portfolioData.personalInfo.name}
+          </span>
         </a>
 
         <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} id="nav-menu">
-          {portfolioData.navigation.map((item) => (
-            <li key={item.id} className="nav-item">
-              <a
-                href={`#${item.id}`}
-                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {portfolioData.navigation.map((item) => {
+            const isContact = item.id === 'contact';
+            return (
+              <li key={item.id} className="nav-item">
+                <a
+                  href={`#${item.id}`}
+                  className={`nav-link ${activeSection === item.id ? 'active' : ''} ${isContact ? 'nav-link-cta' : ''
+                    }`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <button

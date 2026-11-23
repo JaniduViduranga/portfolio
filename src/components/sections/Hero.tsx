@@ -1,22 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { portfolioData } from '../../data/portfolioData';
+import codeBackdropImg from '../../assets/code-backdrop.jpg';
 
-// Monospace decorative code texture snippet
-const CODE_SNIPPET = `const Janidu = () => {
-  const [vision, execution] = useSkills({
-    focus: "Full-Stack Development",
-    core: ["React", "TypeScript", "Python"],
-    mission: "Engineering Real Solutions"
-  });
-
-  return (
-    <Portfolio
-      performance="optimized"
-      scalable={true}
-      passion="infinite"
-    />
-  );
-};`;
+// Rotating professional roles
+const ROLES = [
+  'SOFTWARE ENGINEERING',
+  'NETWORK ENGINEERING',
+  'DATA ANALYTICS',
+];
 
 // Particle data for the floating lights
 const PARTICLES = [
@@ -32,6 +23,14 @@ const PARTICLES = [
 
 export const Hero: React.FC = () => {
   const { personalInfo, socialLinks } = portfolioData;
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleScrollTo = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -40,7 +39,7 @@ export const Hero: React.FC = () => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const navHeight = 76;
+      const navHeight = 74;
       const targetPosition =
         targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
       window.scrollTo({
@@ -59,7 +58,14 @@ export const Hero: React.FC = () => {
             HI, I'M <span className="hero-highlight">{personalInfo.firstName.toUpperCase()}</span>
             <br />
 
-            <span className="hero-subhead">EXPLORING SOFTWARE ENGINEERING, NETWORK ENGINERING & DATA ANALYTICS</span>
+            <span className="hero-subhead">
+              <span className="hero-subhead-fixed">EXPLORING</span>
+              <span className="hero-slider-wrapper">
+                <span key={roleIndex} className="hero-slider-text">
+                  {ROLES[roleIndex]}
+                </span>
+              </span>
+            </span>
           </h1>
 
           <p className="hero-description">{personalInfo.tagline}</p>
@@ -121,9 +127,13 @@ export const Hero: React.FC = () => {
             {/* Layer 1: Outer atmospheric radial glow aura */}
             <div className="hero-glow-aura" aria-hidden="true" />
 
-            {/* Layer 2: Low-opacity monospace React/JSX code snippet texture */}
-            <div className="hero-code-texture" aria-hidden="true">
-              <pre>{CODE_SNIPPET}</pre>
+            {/* Layer 2: Code Backdrop Image - Middle show, outer opacity low with radial gradient */}
+            <div className="hero-code-backdrop-container" aria-hidden="true">
+              <img
+                src={codeBackdropImg}
+                alt=""
+                className="hero-code-backdrop-img"
+              />
             </div>
 
             {/* Layer 3: Floating electric blue & ice-white light particles */}

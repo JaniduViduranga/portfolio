@@ -85,15 +85,46 @@ export const Projects: React.FC = () => {
           })}
         </div>
 
-        {/* 2-Column Wide Project Grid */}
-        <div className="projects-grid projects-grid-two-col">
-          {displayedProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onImageClick={(proj) => setModalProject(proj)}
-            />
-          ))}
+        {/* Project Showcase with Side Previous & Next Navigation */}
+        <div className="projects-showcase-wrapper">
+          {totalPages > 1 && (
+            <button
+              type="button"
+              className="project-side-nav-btn project-side-nav-prev"
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+              aria-label="Previous project page"
+              title="Previous projects"
+            >
+              <i className="fas fa-chevron-left" aria-hidden="true" />
+              <span>Prev</span>
+            </button>
+          )}
+
+          {/* 2-Column Wide Project Grid */}
+          <div className="projects-grid projects-grid-two-col">
+            {displayedProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onImageClick={(proj) => setModalProject(proj)}
+              />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <button
+              type="button"
+              className="project-side-nav-btn project-side-nav-next"
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+              aria-label="Next project page"
+              title="Next projects"
+            >
+              <span>Next</span>
+              <i className="fas fa-chevron-right" aria-hidden="true" />
+            </button>
+          )}
         </div>
 
         {/* Empty state fallback */}
@@ -112,17 +143,6 @@ export const Projects: React.FC = () => {
             </div>
 
             <div className="pagination-controls">
-              <button
-                type="button"
-                className="pagination-btn pagination-arrow"
-                disabled={currentPage === 1}
-                onClick={() => handlePageChange(currentPage - 1)}
-                aria-label="Previous project page"
-              >
-                <i className="fas fa-chevron-left" aria-hidden="true" />
-                <span>Prev</span>
-              </button>
-
               <div className="pagination-numbers">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <button
@@ -137,17 +157,6 @@ export const Projects: React.FC = () => {
                   </button>
                 ))}
               </div>
-
-              <button
-                type="button"
-                className="pagination-btn pagination-arrow"
-                disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(currentPage + 1)}
-                aria-label="Next project page"
-              >
-                <span>Next</span>
-                <i className="fas fa-chevron-right" aria-hidden="true" />
-              </button>
             </div>
           </div>
         )}

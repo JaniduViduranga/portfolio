@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
         <div className="footer-top">
           <div className="footer-brand">
             <h3>{portfolioData.personalInfo.name}</h3>
-            <p>{portfolioData.personalInfo.role} · {portfolioData.personalInfo.university}</p>
+            <p>{portfolioData.personalInfo.role}</p>
           </div>
 
           <div className="footer-socials">

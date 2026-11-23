@@ -70,7 +70,7 @@ export const portfolioData = {
     name: 'Janidu Viduranga',
     firstName: 'Janidu',
     headline: "Hi, I'm",
-    role: 'Undergraduate Student · Software Developer',
+    role: 'Undergraduate Student',
     university: 'Sabaragamuwa University of Sri Lanka',
     degreeProgram: 'BSc (Hons) in Computing and Information Systems',
     tagline:
@@ -114,13 +114,13 @@ export const portfolioData = {
   socialLinks: {
     linkedin: {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/janidu',
+      url: 'https://www.linkedin.com/in/janiduviduranga/',
       icon: 'fab fa-linkedin-in',
       type: 'link'
     },
     github: {
       name: 'GitHub',
-      url: 'https://github.com/janidu',
+      url: 'https://github.com/JaniduViduranga',
       icon: 'fab fa-github',
       type: 'link'
     },
@@ -133,8 +133,8 @@ export const portfolioData = {
     },
     phone: {
       name: 'Phone',
-      value: '+94 766248015',
-      url: 'tel:+94766248015',
+      value: '+94 71 740 1557',
+      url: 'tel:+94717401557',
       icon: 'fas fa-phone',
       type: 'phone'
     }

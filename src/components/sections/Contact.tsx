@@ -170,7 +170,7 @@ export const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="e.g. John Doe"
+                  placeholder="e.g. Janidu Viduranga"
                   className={errors.name ? 'input-error' : ''}
                 />
                 {errors.name && <span className="error-message">{errors.name}</span>}
@@ -184,7 +184,7 @@ export const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="e.g. john@example.com"
+                  placeholder="e.g. janiduviduranga78@gmail.com"
                   className={errors.email ? 'input-error' : ''}
                 />
                 {errors.email && <span className="error-message">{errors.email}</span>}
@@ -198,7 +198,7 @@ export const Contact: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="e.g. +94766248015"
+                  placeholder="e.g. +94 71 740 1557"
                   className={errors.phone ? 'input-error' : ''}
                 />
                 {errors.phone && <span className="error-message">{errors.phone}</span>}
