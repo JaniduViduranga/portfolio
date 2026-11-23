@@ -7,13 +7,11 @@ interface SkillCardProps {
 
 export const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
   return (
-    <div className="skill-card">
-      <div className="skill-icon">
-        <i className={skill.icon} aria-hidden="true" />
-      </div>
-      <h3>{skill.name}</h3>
-      <p>{skill.description}</p>
-      <span className="skill-category-badge">{skill.category}</span>
+    <div className="skill-pill">
+      <span className="skill-pill-icon-container" style={{ color: skill.color }}>
+        <i className="fas fa-code" aria-hidden="true" />
+      </span>
+      <span className="skill-pill-label">{skill.name}</span>
     </div>
   );
 };

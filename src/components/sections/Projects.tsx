@@ -1,43 +1,74 @@
 import React, { useState } from 'react';
-import { portfolioData } from '../../data/portfolioData';
+import { portfolioData, type ProjectCategory } from '../../data/portfolioData';
 import SectionHeading from '../ui/SectionHeading';
 import ProjectCard from '../ui/ProjectCard';
 
-export const Projects: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<'All' | 'Web' | 'Mobile'>('All');
-  const categories: Array<'All' | 'Web' | 'Mobile'> = ['All', 'Web', 'Mobile'];
+type FilterTab = 'All' | ProjectCategory;
 
-  const filteredProjects = activeCategory === 'All'
-    ? portfolioData.projects
-    : portfolioData.projects.filter((project) => project.category === activeCategory);
+export const Projects: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<FilterTab>('All');
+
+  const filterTabs: FilterTab[] = [
+    'All',
+    'Web Development',
+    'Network',
+    'Data Analysis',
+    'UI/UX Design'
+  ];
+
+  const filteredProjects =
+    selectedCategory === 'All'
+      ? portfolioData.projects
+      : portfolioData.projects.filter(
+          (project) => project.category === selectedCategory
+        );
 
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <SectionHeading title="Projects" />
+        <SectionHeading
+          title="Featured Projects"
+          subtitle="Explore categorized work across full-stack web applications, network architecture simulations, exploratory data analytics, and user experience designs."
+        />
 
-        <div className="filter-tabs">
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category} Projects
-            </button>
-          ))}
+        {/* Category Filter Tabs */}
+        <div className="projects-filter-bar" role="tablist" aria-label="Project Categories">
+          {filterTabs.map((category) => {
+            const count =
+              category === 'All'
+                ? portfolioData.projects.length
+                : portfolioData.projects.filter((p) => p.category === category).length;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={selectedCategory === category}
+                className={`project-filter-btn ${
+                  selectedCategory === category ? 'active' : ''
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                <span>{category}</span>
+                <span className="filter-count-badge">{count}</span>
+              </button>
+            );
+          })}
         </div>
 
+        {/* Projects Grid */}
         <div className="projects-grid">
           {filteredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
+        {/* Empty state fallback */}
         {filteredProjects.length === 0 && (
           <div className="empty-state">
-            <p>No projects found in this category.</p>
+            <i className="fas fa-folder-open" aria-hidden="true" />
+            <p>No projects currently listed under {selectedCategory}. Check back soon!</p>
           </div>
         )}
       </div>

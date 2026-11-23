@@ -77,7 +77,7 @@ export const Navbar: React.FC = () => {
     setIsMobileMenuOpen(false);
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const navHeight = navRef.current?.offsetHeight || 70;
+      const navHeight = navRef.current?.offsetHeight || 76;
       const targetPosition =
         targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
       window.scrollTo({

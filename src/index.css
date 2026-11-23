@@ -1,38 +1,62 @@
-/* Reset & Design System Tokens */
+/* ==========================================================================
+   Centralized Theme & Typography Tokens - Midnight Navy & Electric Cobalt
+   Single source of truth matched directly to the studio portrait palette
+   ========================================================================== */
+
 :root {
-  --primary-color: rgb(58, 176, 155);
-  --primary-dark: #2c8c7b;
-  --primary-light: #52c2ad;
-  --primary-rgb: 58, 176, 155;
+  /* Exact photo-matched palette */
+  --color-bg-primary: #050811;           /* Deep obsidian-black studio backdrop */
+  --color-bg-secondary: #111A2E;         /* Midnight navy matched to blazer shadows */
+  --color-accent-secondary: #1E3A8A;     /* Deep royal blue for borders, aura & fills */
+  --color-accent-primary: #2563EB;       /* Vibrant electric cobalt blue */
+  --color-accent-primary-hover: #1D4ED8; /* Hover state for primary actions */
+  --color-text-primary: #F8FAFC;         /* Crisp off-white dress shirt contrast */
+  --color-text-secondary: #94A3B8;       /* Clean cool slate for body readability */
+  --color-accent-ice: #93C5FD;          /* Ice blue for highlights & particles */
+
+  /* Typography */
+  --font-heading: 'Bebas Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Helper RGB tokens for glassmorphism and ambient lighting */
+  --color-bg-primary-rgb: 5, 8, 17;
+  --color-bg-secondary-rgb: 17, 26, 46;
+  --color-accent-secondary-rgb: 30, 58, 138;
+  --color-accent-primary-rgb: 37, 99, 235;
+  --color-text-primary-rgb: 248, 250, 252;
+  --color-text-secondary-rgb: 148, 163, 184;
+
+  /* Semantic UI tokens */
+  --border-card: 1px solid var(--color-accent-secondary);
+  --border-card-subtle: 1px solid rgba(30, 58, 138, 0.4);
+  --glass-card-bg: rgba(17, 26, 46, 0.85);
+  --glass-navbar-bg: rgba(17, 26, 46, 0.9);
   
-  --accent-yellow: #eaec6f;
-  --highlight-cyan: #b2eeec;
-  
-  --btn-primary-bg: #eff3f6;
-  --btn-secondary-bg: #75eaaa;
-  --btn-secondary-text: #164667;
-  
-  --navy-dark: #2c3e50;
-  --navy-text: #1a252f;
-  --text-main: #333333;
-  --text-muted: #5d6d7e;
-  --text-light: #7f8c8d;
-  
-  --navbar-bg: #c0dfe3;
-  --navbar-scrolled: rgba(167, 217, 212, 0.95);
-  
-  --bg-home: rgb(58, 176, 155);
-  --bg-white: #ffffff;
-  --bg-alt: #f8f9fa;
-  
-  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
-  
-  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --transition: all 0.3s ease;
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(30, 58, 138, 0.3);
+  --shadow-card-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(37, 99, 235, 0.25);
+  --shadow-button-glow: 0 0 20px rgba(37, 99, 235, 0.4);
+
+  --transition-fast: 0.15s ease;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Legacy aliases for backwards-compatibility */
+  --primary-color: var(--color-accent-primary);
+  --primary-dark: var(--color-accent-primary-hover);
+  --primary-light: var(--color-accent-ice);
+  --navy-dark: var(--color-text-primary);
+  --text-main: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --bg-home: var(--color-bg-primary);
+  --bg-white: var(--color-bg-secondary);
+  --bg-alt: var(--color-bg-primary);
 }
 
-* {
+/* ==========================================================================
+   Global Resets & Base Typography
+   ========================================================================== */
+/* Reset & Base Setup */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -41,20 +65,54 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: var(--color-bg-primary);
+  color-scheme: dark;
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
   line-height: 1.6;
-  color: var(--text-main);
-  background: var(--bg-home);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary);
+}
+
+/* Headings default to Bebas Neue */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
+  letter-spacing: 1.5px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* Links & interactive */
+/* Headings Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+  color: var(--color-text-primary);
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
 a {
@@ -63,11 +121,37 @@ a {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--font-body);
+  cursor: pointer;
 }
 
+/* Custom Selection */
+::selection {
+  background-color: var(--color-accent-primary);
+  color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
+/* Containers */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
