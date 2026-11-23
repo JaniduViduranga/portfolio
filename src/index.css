@@ -171,24 +171,9 @@ button {
   padding: 0 24px;
 }
 
-/* ==========================================================================
-   Hero Vertical Text Slide Animation
-   ========================================================================== */
-@keyframes slideTextUp {
-  0% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-
-  15%,
-  85% {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100%);
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
   }
 }
 
